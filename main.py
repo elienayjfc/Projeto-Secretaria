@@ -12,7 +12,7 @@ def autenticacao(u,s):
 
 
 
-if __name__ == "__init__":
+if __name__ == "__main__":
     app =  telaLogin(autenticacao)
     app.mainloop()
     

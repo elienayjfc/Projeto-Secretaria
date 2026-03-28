@@ -20,4 +20,4 @@ def login(usuario,senha):
     print("Acesso bloquado")
     return False
 
-login() 
+#login() 
