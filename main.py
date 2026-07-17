@@ -3,10 +3,10 @@ from services.login.funcoes_login import login
 from tkinter import messagebox
  
 
-def autenticacao(u,s):
+def autenticacao(u,s): #resolver tamanho da mesage box
     if login(u,s):
-        messagebox.showinfo("Login Realizado")
-    else: messagebox.showinfo("Usuario ou senha incorretos")
+        messagebox.showinfo('Sucesso', "Login Realizado")
+    else: messagebox.showinfo( 'Erro',"Usuario ou senha incorretos")
 
 
 

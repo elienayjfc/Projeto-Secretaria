@@ -17,7 +17,7 @@ def login(usuario,senha):
         else:
             print("Usuário ou senha incorreto")
             tentativas -= 1
-    print("Acesso bloquado")
+    print("Acesso bloqueado")
     return False
 
 #login() 
