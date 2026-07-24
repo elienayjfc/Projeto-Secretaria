@@ -1,31 +1,42 @@
-from tkinter import *
-from tkinter import ttk
+import flet as ft 
+from services.login.funcoes_login import login
+from views.init_view import main
 
-#def tela():
-root = Tk()
-root.title("Login")
+def tela_login(page: ft.Page):
+    page.window.width = 400
+    page.window.height = 250
+    page.title = 'Login'
+    page.padding = 30
+    page.theme_mode = ft.ThemeMode.DARK
+    page.update()
 
-frame = ttk.Frame(root, padding=50)
-frame.grid()
-#return root, frame
-
-
-def telaLogin(callback_login):
-    #root, frame = tela()
-    ttk.Label(frame, text="Usuário:").grid(column=0, row=0)
-    login_view = ttk.Entry(frame)
-    login_view.grid(column=1, row=0)
-    ttk.Label(frame, text="Senha").grid(column=0, row=1)
-    senha_view = ttk.Entry(frame, show="*")
-    senha_view.grid(column=1, row=1)
-
-    entrar = ttk.Button(
-        frame,text="Entrar",
-        command=lambda: callback_login(login_view.get(), senha_view.get()))
     
-    entrar.grid(column=1, row=2)
-    return root
 
-def fechar_tela():
-    root.destroy()
+
+    def fazer_login():
+        if login(usuario.value, senha.value) == True:
+            alerta = ft.Text('Logado com sucesso')
+            page.add(alerta)
+            page.go(main)
+
+            
+            
+            
+    usuario = ft.TextField(hint_text='Usuario', label='Usuário')
+    senha = ft.TextField(hint_text='Senha', label = 'senha', password=True)
+    new_button = ft.Button('Entrar', bgcolor= ft.Colors.GREEN_100, color=ft.Colors.GREEN,on_click = fazer_login) #on_click adiciona uma função ao butão
+
+    layout =  ft.Column (spacing= 5, 
+                         alignment= ft.MainAxisAlignment.CENTER,
+                         controls= [
+                             ft.Row(ft.Container(content= usuario), alignment= ft.CrossAxisAlignment.CENTER),
+                             ft.Row(ft.Container(content=senha),alignment= ft.CrossAxisAlignment.CENTER),
+                             ft.Row(ft.Container(content=new_button),alignment= ft.CrossAxisAlignment.CENTER)
+                         ])
+    page.add(layout)
+    
+
+
+
+ft.app(target = tela_login)
 
