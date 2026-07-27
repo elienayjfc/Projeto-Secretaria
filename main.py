@@ -1,10 +1,15 @@
 import flet as ft
 from views.login_view import tela_login
 from views.init_view import init_page
+from views.relatorioG_view import gerencial
+from views.cadastro_membros_view import cadastro_membros
 
 
 async def main(page: ft.Page):
     def route_change(e):
+        page.locale_configuration = ft.LocaleConfiguration(
+            supported_locales=[ft.Locale("pt", "BR")],
+            current_locale=ft.Locale("pt", "BR"))
         #page.views.clear()
 
         
@@ -26,7 +31,19 @@ async def main(page: ft.Page):
             page.theme_mode = ft.ThemeMode.LIGHT
             page.window.resizable = True
             
-            page.views.append(init_page())
+            page.views.append(init_page(page))
+
+        elif page.route == '/relatorio_gerencial':
+            page.title = 'Relatorio Gerencial'
+            page.views.append(gerencial(page))
+
+        elif page.route == '/cadastro_membros':
+            page.title = 'Cadastro de membros'
+            page.padding = 30
+
+            page.views.append(cadastro_membros(page))
+
+        
 
         else:
             page.views.append(tela_login(page))
@@ -46,6 +63,4 @@ async def main(page: ft.Page):
 
 ft.app(target = main)
 '''if __name__ == '__init__':
-    ft.run(main)'''
-
-    
+    ft.run(main)'''  
